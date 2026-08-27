@@ -1,0 +1,16 @@
+# Dependencies and build output
+node_modules/
+dist/
+build/
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+client/.git.client-backup/
+
+# Logs and editor files
+*.log
+.DS_Store
+.vscode/
+.idea/
