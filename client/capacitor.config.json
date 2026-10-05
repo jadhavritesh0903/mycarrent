@@ -1,0 +1,11 @@
+{
+  "appId": "com.drivenow.carrental",
+  "appName": "DriveNow Car Rental",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": true
+  },
+  "server": {
+    "cleartext": true
+  }
+}

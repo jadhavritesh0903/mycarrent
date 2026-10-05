@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DriveNow Car Rental</string>
+    <string name="title_activity_main">DriveNow Car Rental</string>
+    <string name="package_name">com.drivenow.carrental</string>
+    <string name="custom_url_scheme">com.drivenow.carrental</string>
+</resources>

@@ -1,0 +1,7 @@
+{
+  "name": "car-rental",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix client run dev --"
+  }
+}

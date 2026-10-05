@@ -49,6 +49,29 @@ const AdminPage = () => {
     loadData();
   }, [user]);
 
+  useEffect(() => {
+    const handleBookingNotifications = (event) => {
+      const { newBookings = [], pendingBookings, totalBookings } = event.detail;
+
+      if (newBookings.length > 0) {
+        setBookings((previousBookings) => {
+          const existingIds = new Set(previousBookings.map((booking) => booking._id));
+          const unseenBookings = newBookings.filter((booking) => !existingIds.has(booking._id));
+          return [...unseenBookings, ...previousBookings];
+        });
+      }
+
+      setStats((previousStats) => ({
+        ...previousStats,
+        pendingBookings,
+        totalBookings,
+      }));
+    };
+
+    window.addEventListener('admin-booking-notifications', handleBookingNotifications);
+    return () => window.removeEventListener('admin-booking-notifications', handleBookingNotifications);
+  }, []);
+
   if (!user) return <Navigate to="/login" replace />;
   if (user.role !== 'admin') return <Navigate to="/" replace />;
 
@@ -56,11 +79,12 @@ const AdminPage = () => {
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <h1 className="text-4xl font-black text-slate-900">Admin Dashboard</h1>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-4">
+      <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
         <div className="rounded-3xl bg-white p-6 shadow-soft"><p className="text-sm text-slate-500">Total Cars</p><p className="mt-2 text-3xl font-black text-slate-900">{stats.totalCars || 0}</p></div>
         <div className="rounded-3xl bg-white p-6 shadow-soft"><p className="text-sm text-slate-500">Total Users</p><p className="mt-2 text-3xl font-black text-slate-900">{stats.totalUsers || 0}</p></div>
         <div className="rounded-3xl bg-white p-6 shadow-soft"><p className="text-sm text-slate-500">Bookings</p><p className="mt-2 text-3xl font-black text-slate-900">{stats.totalBookings || 0}</p></div>
         <div className="rounded-3xl bg-white p-6 shadow-soft"><p className="text-sm text-slate-500">Available Cars</p><p className="mt-2 text-3xl font-black text-slate-900">{stats.availableCars || 0}</p></div>
+        <div className="rounded-3xl bg-white p-6 shadow-soft"><p className="text-sm text-slate-500">Pending Bookings</p><p className="mt-2 text-3xl font-black text-amber-600">{stats.pendingBookings || 0}</p></div>
       </div>
 
       <div className="mt-10 grid gap-8 xl:grid-cols-2">

@@ -66,6 +66,18 @@ cd server
 npm run dev
 ```
 
+To open the development app on a phone, connect the phone and computer to the same Wi-Fi and visit `http://<computer-local-ip>:5173` on the phone. The Vite development server forwards `/api` requests to the backend. If Windows Firewall prompts you, allow Node.js on your private network.
+
+## Android APK
+
+1. Install Android Studio and its Android SDK, then use a JDK supported by the installed Android Gradle Plugin (JDK 17 is recommended).
+2. From `client/`, run `npm run android:add` once to create the Android project.
+3. Connect the phone and computer to the same Wi-Fi. Keep the backend running and allow Node.js through Windows Firewall on private networks.
+4. From `client/`, run `npm run android:apk`. The script uses the computer's Wi-Fi address and creates `client/DriveNow-Car-Rental.apk`.
+5. Transfer that APK to the phone and install it. If the backend uses a different address or port, pass it explicitly with `npm run android:apk -- -ApiUrl http://<computer-local-ip>:<port>/api`.
+
+The APK uses the local backend URL embedded at build time, so rebuild it if the computer's Wi-Fi address changes. The debug APK is for testing on the same Wi-Fi, not public release.
+
 ## Production build
 
 ```bash

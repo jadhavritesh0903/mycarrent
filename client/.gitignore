@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Android build output and machine-local SDK configuration
+android/.gradle/
+android/local.properties
+android/build/
+android/app/build/
+android/captures/

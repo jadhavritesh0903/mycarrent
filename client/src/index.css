@@ -20,7 +20,7 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
   min-height: 100vh;
   background: #f8fafc;
 }
@@ -44,3 +44,36 @@ select {
   box-sizing: border-box;
 }
 
+@keyframes login-car-drive {
+  0% {
+    left: -140px;
+  }
+
+  80%,
+  100% {
+    left: calc(100% + 12px);
+  }
+}
+
+@keyframes login-car-wheel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login-car-track {
+  animation: login-car-drive 6s linear infinite;
+}
+
+.login-car-wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: login-car-wheel-spin 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-car-track,
+  .login-car-wheel {
+    animation: none;
+  }
+}
